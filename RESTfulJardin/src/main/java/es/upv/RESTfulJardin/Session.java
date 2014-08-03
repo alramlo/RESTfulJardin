@@ -1,6 +1,9 @@
 
 package es.upv.RESTfulJardin;
 
+import java.security.SecureRandom;
+import java.util.UUID;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -17,6 +20,7 @@ import es.upv.RESTfulJardin.modelo.User;
 public class Session {
     
 	private UserDAO userDao;
+	private String token;
 	
 	public Session(){
 		
@@ -36,7 +40,7 @@ public class Session {
     }
     
     @GET
-    @Path("login")
+    @Path("authentication")
     @Produces(MediaType.TEXT_PLAIN)
     public Response login(
     		@QueryParam("name") String name,
@@ -46,10 +50,13 @@ public class Session {
     		
     		User user = userDao.findUserByNameAndPass(name, password);
     		
-    		if(user!=null)
-    			return Response.status(Response.Status.OK).entity("true").build();
-    		else
-    			return Response.status(Response.Status.OK).entity("false").build();
+    		if(user!=null){
+    			token = UUID.randomUUID().toString();
+    			return Response.status(Response.Status.OK).entity(token).build();
+    		}
+    		else{
+    			return Response.status(Response.Status.FORBIDDEN).entity("Denied").build();
+    		}
     		
     		
     	}catch(Exception e){
