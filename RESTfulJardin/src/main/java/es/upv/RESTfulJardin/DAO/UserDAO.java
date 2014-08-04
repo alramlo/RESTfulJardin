@@ -1,8 +1,8 @@
 package es.upv.RESTfulJardin.DAO;
 
+import java.util.Date;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
-
 import es.upv.RESTfulJardin.modelo.User;
 
 
@@ -35,6 +35,15 @@ public class UserDAO extends GenericDAO{
 			return null;
 		}
 		 
+	}
+	
+	public void updateUser ( User user, String token, Date date){
+		
+		entityManager.getTransaction().begin();
+		user.setStringConnection(token);
+		user.setDateConnection(date);
+		entityManager.getTransaction().commit();
+		
 	}
 	
 }

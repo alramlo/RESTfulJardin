@@ -4,7 +4,7 @@
 		<class>es.upv.RESTfulJardin.modelo.User</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jardin"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://54.187.28.200:3306/jardin"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>
 		</properties>
 	</persistence-unit>

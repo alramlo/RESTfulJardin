@@ -1,16 +1,14 @@
 
 package es.upv.RESTfulJardin;
 
-import java.security.SecureRandom;
+import java.util.Date;
 import java.util.UUID;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
 import es.upv.RESTfulJardin.DAO.UserDAO;
 import es.upv.RESTfulJardin.modelo.User;
 
@@ -51,8 +49,12 @@ public class Session {
     		User user = userDao.findUserByNameAndPass(name, password);
     		
     		if(user!=null){
+    			
+    			//Generamos el token de conexión
     			token = UUID.randomUUID().toString();
-    			return Response.status(Response.Status.OK).entity(token).build();
+    			//lo introducimos en el sistema la conexión
+    			userDao.updateUser(user, token, new Date());
+    			return Response.status(Response.Status.OK).entity(user.getStringConnection()).build();
     		}
     		else{
     			return Response.status(Response.Status.FORBIDDEN).entity("Denied").build();
