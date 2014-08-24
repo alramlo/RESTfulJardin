@@ -18,12 +18,13 @@ import es.upv.RESTfulJardin.modelo.User;
 public class Session {
     
 	private UserDAO userDao;
+	private Common common;
 	private String token;
 	
 	public Session(){
 		
 		userDao = new UserDAO();
-		
+		common = new Common();
 	}
 	
     /** Method processing HTTP GET requests, producing "text/plain" MIME media
@@ -46,7 +47,7 @@ public class Session {
     	
     	try{
     		
-    		User user = userDao.findUserByNameAndPass(name, password);
+    		User user = userDao.findUserByNameAndPass(common.decrypt(name), common.decrypt(password));
     		
     		if(user!=null){
     			
@@ -54,7 +55,7 @@ public class Session {
     			token = UUID.randomUUID().toString();
     			//lo introducimos en el sistema la conexión
     			userDao.updateUser(user, token, new Date());
-    			return Response.status(Response.Status.OK).entity(user.getStringConnection()).build();
+    			return Response.status(Response.Status.OK).entity(common.encrypt(user.getStringConnection())).build();
     		}
     		else{
     			return Response.status(Response.Status.FORBIDDEN).entity("Denied").build();
