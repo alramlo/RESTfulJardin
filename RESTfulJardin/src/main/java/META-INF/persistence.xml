@@ -2,6 +2,13 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="RESTfulJardin" transaction-type="RESOURCE_LOCAL">
 		<class>es.upv.RESTfulJardin.modelo.User</class>
+		<class>es.upv.RESTfulJardin.modelo.ControlCode</class>
+		<class>es.upv.RESTfulJardin.modelo.ControlElement</class>
+		<class>es.upv.RESTfulJardin.modelo.StatesControlCode</class>
+		<class>es.upv.RESTfulJardin.modelo.StatesControlElement</class>
+		<class>es.upv.RESTfulJardin.modelo.Type</class>
+		<class>es.upv.RESTfulJardin.modelo.Area</class>
+		<class>es.upv.RESTfulJardin.modelo.ControlNode</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://54.187.28.200:3306/jardin"/>

@@ -37,6 +37,24 @@ public class UserDAO extends GenericDAO{
 		 
 	}
 	
+	public User findUserByName(String name){
+		
+		try{
+			
+			Query q = entityManager.createQuery("Select u FROM User u "
+					+ "u.name=name");
+			q.setParameter("name", name);
+			return (User) q.getSingleResult();
+			
+		}catch(Exception e){
+			
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+
+	
 	public void updateUser ( User user, String token, Date date){
 		
 		entityManager.getTransaction().begin();
@@ -45,5 +63,5 @@ public class UserDAO extends GenericDAO{
 		entityManager.getTransaction().commit();
 		
 	}
-	
+		
 }
