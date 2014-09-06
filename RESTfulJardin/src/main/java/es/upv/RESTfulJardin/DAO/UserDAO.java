@@ -42,7 +42,7 @@ public class UserDAO extends GenericDAO{
 		try{
 			
 			Query q = entityManager.createQuery("Select u FROM User u "
-					+ "u.name=name");
+					+ "WHERE u.name=:name");
 			q.setParameter("name", name);
 			return (User) q.getSingleResult();
 			

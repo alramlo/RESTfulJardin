@@ -1,7 +1,10 @@
 package es.upv.RESTfulJardin.modelo;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import org.codehaus.jackson.annotate.JsonSubTypes.Type;
 
 
 /**
@@ -17,7 +20,7 @@ public class ControlCode implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(unique=true, nullable=false)
-	private int id;
+	private Integer id;
 
 	@Column(nullable=false, length=45)
 	private String name;
@@ -27,19 +30,17 @@ public class ControlCode implements Serializable {
 	@JoinColumn(name="Control_Node", nullable=false)
 	private ControlNode controlNode;
 
-	//uni-directional many-to-one association to StatesControlCode
-	@ManyToOne
-	@JoinColumn(name="state", nullable=false)
-	private StatesControlCode statesControlCode;
+	@Column(nullable=true,columnDefinition="TINYINT(1)")
+	private Boolean state;
 
 	public ControlCode() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -59,12 +60,14 @@ public class ControlCode implements Serializable {
 		this.controlNode = controlNode;
 	}
 
-	public StatesControlCode getStatesControlCode() {
-		return this.statesControlCode;
+	public Boolean getState() {
+		return state;
 	}
 
-	public void setStatesControlCode(StatesControlCode statesControlCode) {
-		this.statesControlCode = statesControlCode;
+	public void setState(Boolean state) {
+		this.state = state;
 	}
+
+
 
 }

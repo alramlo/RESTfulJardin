@@ -18,24 +18,20 @@ public class Area implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(unique=true, nullable=false)
-	private int id;
+	private Integer id;
 
 	@Column(nullable=false, length=45)
 	private String name;
-
-	@JoinTable(name="areas_control_nodes")
-	@ManyToMany
-	private List<ControlNode> controlNodes;
 	
 
 	public Area() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -46,15 +42,6 @@ public class Area implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public List<ControlNode> getControlNodes() {
-		return controlNodes;
-	}
-
-	public void setControlNodes(List<ControlNode> controlNodes) {
-		this.controlNodes = controlNodes;
-	}
-
 	
 
 }

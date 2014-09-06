@@ -18,7 +18,7 @@ public class ControlNode implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(unique=true, nullable=false)
-	private int id;
+	private Integer id;
 
 	@Column(length=45)
 	private String ip;
@@ -29,18 +29,15 @@ public class ControlNode implements Serializable {
 	@Column(length=45)
 	private String serial;
 
-	@JoinTable(name="areas_control_nodes")
-	@ManyToMany
-	private List<Area> areas;
 
 	public ControlNode() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -66,14 +63,6 @@ public class ControlNode implements Serializable {
 
 	public void setSerial(String serial) {
 		this.serial = serial;
-	}
-
-	public List<Area> getAreas() {
-		return this.areas;
-	}
-
-	public void setAreas(List<Area> areas) {
-		this.areas = areas;
 	}
 
 }
